@@ -12,7 +12,7 @@ public class ChatServer {
     public static void main( String[] args ) throws IOException {
 
         // Initialize server socket
-        ServerSocket serverSocket = new ServerSocket(5000);
+        ServerSocket serverSocket = new ServerSocket( 5000 );
         System.out.println( "Server started. Waiting for clients..." );
 
         while (true) {
