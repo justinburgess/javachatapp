@@ -1,4 +1,4 @@
-package main.java.com.nuberketes.javachatapp;
+package main.java.com.nuberketes.javachatapp.client;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,10 +17,10 @@ public class ChatClientGUI extends JFrame {
 
         messageArea = new JTextArea();
         messageArea.setEditable( false );
-        add( new JScrollPane(), BorderLayout.CENTER );
+        add( new JScrollPane( messageArea ), BorderLayout.CENTER );
 
         textField = new JTextField();
-        textField.addActionListener(new ActionListener() {
+        textField.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed( ActionEvent e ) {
                 client.sendMessage( textField.getText() );
@@ -30,11 +30,16 @@ public class ChatClientGUI extends JFrame {
         add( textField, BorderLayout.SOUTH );
 
         try {
-            this.client = new ChatClient( "127.0.0.1", 5000, this::onMessageRecieved );
+            this.client = new ChatClient( "127.0.0.1",
+                    5000,
+                    this::onMessageReceived );
             client.startClient();
         } catch ( IOException e ) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog( this, "Error connecting to the server", "Connection error", JOptionPane.ERROR_MESSAGE );
+            JOptionPane.showMessageDialog( this,
+                    "Error connecting to the server",
+                    "Connection error",
+                    JOptionPane.ERROR_MESSAGE );
             System.exit(1);
         }
     }
@@ -44,7 +49,7 @@ public class ChatClientGUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
+        SwingUtilities.invokeLater( () -> {
             new ChatClientGUI().setVisible( true );
         });
     }
