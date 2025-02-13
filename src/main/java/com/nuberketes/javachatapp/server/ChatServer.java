@@ -1,4 +1,4 @@
-package main.java.com.nuberketes.javachatapp;
+package main.java.com.nuberketes.javachatapp.server;
 
 import java.io.*;
 import java.net.*;
